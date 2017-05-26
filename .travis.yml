@@ -1,0 +1,26 @@
+sudo: required
+dist: trusty
+language: ruby
+rvm:
+  - 2.4.0
+
+cache:
+  bundler: true
+
+before_install:
+  - gem update --system
+  - gem --version
+
+before_script:
+  - export DISPLAY=:99.0
+  # - 'if ["${TRAVIS_EVENT_TYPE}" = "api"]; then export ODLAB_URL=$ODLAB_URL_API; fi'
+  # - echo $TRAVIS_EVENT_TYPE $ODLAB_URL
+
+script:
+  bundle exec rspec
+
+# after_success:
+#   - curl -H "Content-Type: application/json" -X POST -d '{ "state":"success", "target_url":"https://travis-ci.com/devacademyla/TestTravis/builds/", "description":"The build on ODLabTest succeeded!", "context":"continuous-integration/travis-ci/ODLabTest" }' -u username:token https://api.github.com/repos/:owner/:repo/statuses/:sha
+#
+# after_failure:
+#   - curl -H "Content-Type: application/json" -X POST -d '{ "state":"failure", "target_url":"https://travis-ci.com/devacademyla/TestTravis/builds/", "description":"The build on ODLabTest failed!", "context":"continuous-integration/travis-ci/ODLabTest" }' -u username:token https://api.github.com/repos/:owner/:repo/statuses/:sha
