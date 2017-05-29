@@ -20,7 +20,7 @@ script:
   bundle exec rspec
 
 after_success:
-  - curl -H "Content-Type: application/json" -X POST -d '{ "state":"success", "target_url":"https://travis-ci.org/devacademyla/TestTravis/builds/", "description":"The build succeeded!", "context":"Project Test" }' -u moisesnandres:$token https://api.github.com/repos/devacademyla/testtravis/statuses/$COMMIT
+  - curl -H "Content-Type:application/json" -X POST -d '{ "state":"success", "target_url":"https://travis-ci.org/devacademyla/TestTravis/builds/", "description":"The build succeeded!", "context":"Project Test" }' -u moisesnandres:$token https://api.github.com/repos/devacademyla/testtravis/statuses/$COMMIT
 #
 # after_failure:
 #   - curl -H "Content-Type: application/json" -X POST -d '{ "state":"failure", "target_url":"https://travis-ci.com/devacademyla/TestTravis/builds/", "description":"The build on ODLabTest failed!", "context":"continuous-integration/travis-ci/ODLabTest" }' -u username:token https://api.github.com/repos/:owner/:repo/statuses/:sha
